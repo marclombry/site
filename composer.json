@@ -1,0 +1,16 @@
+{
+    "name": "marc/site",
+    "authors": [
+        {
+            "name": "Marc Lombry",
+            "email": "marc.lombry@gmail.com"
+        }
+    ],
+    "autoload": {
+    	"psr-4": {
+    		"App\\": "App"
+    	}
+    },
+
+    "require": {}
+}
