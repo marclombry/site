@@ -1,7 +1,7 @@
 <?php
 return $config=[
 	'host'=>'localhost',
-	'dbname'=>'mysite',
+	'dbname'=>'tirelire',
 	'username'=>'root',
 	'password'=>''
 ];

@@ -1,0 +1,8 @@
+.contentBlock{
+	background-color:#A6CE90; 
+	border:1px solid #e6e6e6;
+	padding: 10px;
+}
+.navbar-inverse{background-color:#A6CE90;border:#e6e6e6;}
+.glyphicon-remove{color:red;}
+#navbar_header{padding: 10px;}

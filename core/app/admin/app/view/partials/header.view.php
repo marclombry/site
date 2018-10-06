@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,13 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="virtual piggy bank">
+    <meta name="author" content="marc lombry">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>linker</title>
+    <title>Tirelire</title>
 
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://localhost/tirelire/core/app/public/css/engrenage.css">
+    <link rel="stylesheet" href="http://localhost/tirelire/core/app/public/css/common.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -36,9 +38,9 @@
     <style>
     	nav{margin:0px 0px 20px 0px;}
     	#content{margin-top: 100px;}
+      form{margin: 100px 10px 10px 10px;}
     </style>
   </head>
-
   <body>
     <nav class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
@@ -49,41 +51,20 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Linker</a>
+          <a class="navbar-brand" href="/tirelire">Tirelire</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#add">Ajouter</a></li>
-            <li><a href="#up">Modifier</a></li>
-            <li><a href="#del">Supprimer</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="create"> <span class="glyphicon glyphicon-pencil"></span> Ajouter</a></li>
+            <?php
+              if(!isset($_SESSION['auth']) || empty($_SESSION)){
+                echo '<li><a href="login">Se connecter</a></li>';
+              }else{
+                echo '<li><a href="/tirelire/deco">deco</a></li>';
+                echo '<li><a href=""><span class="glyphicon glyphicon-user"></span> '.$_SESSION['auth']['pseudo'].'</a></li>';
+              }
+            ?>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
     </nav><!-- /.navbar -->
-
-    <div id="content" class="container">
-
-    <?=$content;?> 
-
-      <hr>
-
-      <footer>
-        <p>&copy; <?= '2018 '.date('Y')?>, Marc Lombry.</p>
-      </footer>
-
-    </div><!--/.container-->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="offcanvas.js"></script>
-  </body>
-</html>

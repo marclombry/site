@@ -1,0 +1,4 @@
+AuthName "Vous entrer dans la partie admin"
+AuthType Basic
+AuthUserFile "C:\wamp64\www\tirelire\core\app\admin\.htpasswd"
+Require valid-user

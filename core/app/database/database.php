@@ -2,7 +2,7 @@
 class Database extends PDO{
 	protected $pdo;
 	protected $config=[];
-	protected $table ='links';
+	protected $table ='tirelires';
 
 	public function __construct(array $config){
 		$this->config = $config;
@@ -14,10 +14,20 @@ class Database extends PDO{
 		return $this->pdo;
 	}
 
-	public function select($query){
+	public function select($query,$one=null){
+		if($one){
+			return $this->pdo->query($query)->fetch(PDO::FETCH_OBJ);
+		}
 		return $this->pdo->query($query)->fetchAll(PDO::FETCH_OBJ);
 	}
-
+	
+	public function selPrepare($query,$donne,$one=null){
+		if($one){
+			return $this->pdo->prepare($query)->execute($donne)->fetch(PDO::FETCH_OBJ);
+		}
+		return $this->pdo->prepare($query)->execute($donne)->fetchAll(PDO::FETCH_OBJ);
+	}
+	
 	public function all($one=null){
 		if($one){
 			return $this->pdo->query("SELECT * FROM $this->table")->fetch(PDO::FETCH_OBJ);
@@ -26,14 +36,13 @@ class Database extends PDO{
 	}
 
 	public function insert($donne){
-		/*
-		$q = $this->pdo->prepare("INSERT INTO $this->table (wordsen, picture, wordsfr) VALUES (:wordsen, :picture, :wordsfr)");
+		$q = $this->pdo->prepare("INSERT INTO $this->table (value) VALUES (:value)");
 		$q->execute($donne);
-		*/
-		
-		$q = $this->pdo->prepare("INSERT INTO $this->table (name, color, photo,href,category) VALUES (:name, :color, :photo, :href, :category)");
+	}
+
+	public function inserting($donne){
+		$q = $this->pdo->prepare("INSERT INTO moneys (valeurs,id_tirelire) VALUES (:valeurs,:id_tirelire)");
 		$q->execute($donne);
-		
 	}
 
 	public function delete($id,$table){
@@ -43,7 +52,7 @@ class Database extends PDO{
 
 	public function update($id,$table,$donne){
 		
-		$q = $this->pdo->prepare("UPDATE $table SET wordsen =:wordsen,picture =:picture, wordsfr=:wordsfr WHERE id = $id ");
+		$q = $this->pdo->prepare("UPDATE $table SET value =:value WHERE id = $id ");
 		$q->execute($donne);
 		/*
 		$q = $this->pdo->prepare("UPDATE $table SET name =:name,color =:color, photo=:photo

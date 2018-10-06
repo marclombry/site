@@ -1,0 +1,4 @@
+/* this box englob every data */
+.boxContent{}
+/* this style allows to put the display on flex */
+.flexW{display: flex;flex-wrap: wrap;}
